@@ -229,30 +229,33 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
     }
     table.print-table tr { break-inside: avoid !important; page-break-inside: avoid !important; }
 
-    /* LOJAS */
+    /* LOJAS: Ajustado para incluir OBS */
     table.print-loja { font-size: 10px !important; }
-    table.print-loja th:nth-child(1), table.print-loja td:nth-child(1) { width: 20% !important; text-align: left !important; }
-    table.print-loja th:nth-child(2), table.print-loja td:nth-child(2) { width: 10% !important; text-align: center !important; }
-    table.print-loja th:nth-child(3), table.print-loja td:nth-child(3) { width: 45% !important; text-align: left !important; }
+    table.print-loja th:nth-child(1), table.print-loja td:nth-child(1) { width: 15% !important; text-align: left !important; }
+    table.print-loja th:nth-child(2), table.print-loja td:nth-child(2) { width: 8% !important; text-align: center !important; }
+    table.print-loja th:nth-child(3), table.print-loja td:nth-child(3) { width: 35% !important; text-align: left !important; }
     table.print-loja th:nth-child(4), table.print-loja td:nth-child(4) { width: 10% !important; text-align: center !important; }
-    table.print-loja th:nth-child(5), table.print-loja td:nth-child(5) { width: 15% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    table.print-loja th:nth-child(5), table.print-loja td:nth-child(5) { width: 12% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    table.print-loja th:nth-child(6), table.print-loja td:nth-child(6) { width: 20% !important; text-align: left !important; }
 
-    /* FORNECEDOR / MATRICIAL */
+    /* FORNECEDOR / MATRICIAL: Ajustado para incluir OBS GERAL */
     table.print-forn { font-size: 7.5px !important; }
     table.print-forn th:nth-child(1), table.print-forn td:nth-child(1) { width: 6% !important; text-align: center !important; }
-    table.print-forn th:nth-child(2), table.print-forn td:nth-child(2) { width: 32% !important; text-align: left !important; }
+    table.print-forn th:nth-child(2), table.print-forn td:nth-child(2) { width: 22% !important; text-align: left !important; }
     table.print-forn th:nth-child(n+3):nth-child(-n+10),
-    table.print-forn td:nth-child(n+3):nth-child(-n+10) { width: 6% !important; text-align: center !important; }
-    table.print-forn th:nth-child(11), table.print-forn td:nth-child(11) { width: 8% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    table.print-forn td:nth-child(n+3):nth-child(-n+10) { width: 5% !important; text-align: center !important; }
+    table.print-forn th:nth-child(11), table.print-forn td:nth-child(11) { width: 6% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    table.print-forn th:nth-child(12), table.print-forn td:nth-child(12) { width: 26% !important; text-align: left !important; font-style: italic !important; }
 
-    /* SEPARAÇÃO */
+    /* SEPARAÇÃO: Ajustado para incluir OBS GERAL */
     table.print-sep { font-size: 8px !important; }
-    table.print-sep th:nth-child(1), table.print-sep td:nth-child(1) { width: 14% !important; text-align: left !important; }
-    table.print-sep th:nth-child(2), table.print-sep td:nth-child(2) { width: 8%  !important; text-align: center !important; }
-    table.print-sep th:nth-child(3), table.print-sep td:nth-child(3) { width: 30% !important; text-align: left !important; }
+    table.print-sep th:nth-child(1), table.print-sep td:nth-child(1) { width: 10% !important; text-align: left !important; }
+    table.print-sep th:nth-child(2), table.print-sep td:nth-child(2) { width: 6%  !important; text-align: center !important; }
+    table.print-sep th:nth-child(3), table.print-sep td:nth-child(3) { width: 20% !important; text-align: left !important; }
     table.print-sep th:nth-child(n+4):nth-child(-n+11),
-    table.print-sep td:nth-child(n+4):nth-child(-n+11) { width: 5% !important; text-align: center !important; }
-    table.print-sep th:nth-child(12), table.print-sep td:nth-child(12) { width: 8% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    table.print-sep td:nth-child(n+4):nth-child(-n+11) { width: 4.5% !important; text-align: center !important; }
+    table.print-sep th:nth-child(12), table.print-sep td:nth-child(12) { width: 6% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    table.print-sep th:nth-child(13), table.print-sep td:nth-child(13) { width: 22% !important; text-align: left !important; font-style: italic !important; }
 }
 
 @media screen {
@@ -299,7 +302,7 @@ def gerar_excel_estilizado(df, sheet_name="Resumo", df_obs=None):
         df.to_excel(writer, index=False, sheet_name=sheet_name)
         worksheet = writer.sheets[sheet_name]
 
-        # Estilos com as cores do App
+        # Estilos com as cores do App (Marrom / Caramelo)
         header_fill = PatternFill(start_color='8B5A2B', end_color='8B5A2B', fill_type='solid') 
         alt_row_fill = PatternFill(start_color='FAF5F0', end_color='FAF5F0', fill_type='solid') 
         header_font = Font(color='FFFFFF', bold=True)
@@ -320,22 +323,30 @@ def gerar_excel_estilizado(df, sheet_name="Resumo", df_obs=None):
                 else:
                     if row_idx % 2 == 0:
                         cell.fill = alt_row_fill
+                    
                     if isinstance(cell.value, (int, float)):
                         cell.alignment = Alignment(horizontal='center', vertical='center')
                     else:
                         cell.alignment = Alignment(horizontal='left', vertical='center')
 
-        # Autoajuste de largura
+        # Autoajuste de largura das colunas
         for col in worksheet.columns:
             max_length = 0
             col_letter = col[0].column_letter
+            header_val = str(col[0].value)
+            
             for cell in col:
                 try:
                     if len(str(cell.value)) > max_length:
                         max_length = len(str(cell.value))
                 except:
                     pass
-            worksheet.column_dimensions[col_letter].width = max_length + 2
+            
+            # Limita e ajusta largura especial para coluna de Observações
+            if "OBS" in header_val:
+                worksheet.column_dimensions[col_letter].width = min(max_length + 2, 60)
+            else:
+                worksheet.column_dimensions[col_letter].width = max_length + 2
 
         # Inserir Observações no Final da Planilha se houver
         if df_obs is not None and not df_obs.empty:
@@ -385,6 +396,16 @@ def parse_bool(x):
     if isinstance(x, (int, float)): return bool(x) and not pd.isna(x)
     return str(x).strip().upper() in ['TRUE', 'VERDADEIRO', '1', 'V', 'SIM', 'YES', 'T', 'X']
 
+# Função para concatenar observações na visão matricial
+def concat_obs(row):
+    obs_list = []
+    for l in LOJAS:
+        val = str(row.get(f"{l}_OBS", "")).strip()
+        if val and val.lower() != "nan":
+            sigla = l.replace("Loja ", "L")
+            obs_list.append(f"{sigla}: {val}")
+    return " | ".join(obs_list)
+
 @st.cache_data(ttl=15)
 def carregar_obs():
     try:
@@ -394,8 +415,17 @@ def carregar_obs():
 
     if df_obs.empty or "Loja" not in df_obs.columns:
         df_obs = pd.DataFrame({"Loja": LOJAS, "Observacao": [""] * len(LOJAS)})
-        conn.update(worksheet=WS_OBS, data=df_obs)
+        try:
+            conn.update(worksheet=WS_OBS, data=df_obs)
+        except Exception:
+            pass # Ignora erro caso não consiga criar a aba sozinho
+            
+    if "Observacao" not in df_obs.columns:
+        df_obs["Observacao"] = ""
         
+    # FORÇA TUDO PARA TEXTO E TRATA OS NANS PARA EVITAR ERROS DE ACESSO .STR
+    df_obs["Observacao"] = df_obs["Observacao"].fillna("").astype(str)
+
     for loja in LOJAS:
         if loja not in df_obs["Loja"].values:
             nova_obs = pd.DataFrame([{"Loja": loja, "Observacao": ""}])
@@ -487,6 +517,7 @@ def carregar_pedidos():
         df_init = df_cat[["Fornecedor", "Código", "Descrição"]].copy()
         for loja in LOJAS:
             df_init[loja] = 0
+            df_init[f"{loja}_OBS"] = ""
         if not df_init.empty:
             conn.update(worksheet=WS_PEDIDOS, data=df_init)
         return df_init
@@ -498,10 +529,18 @@ def carregar_pedidos():
         df_pedidos["Código"] = pd.to_numeric(df_pedidos["Código"], errors='coerce').fillna(0).astype(int)
 
     for loja in LOJAS:
+        # Garante que a coluna de quantidade existe
         if loja in df_pedidos.columns:
             df_pedidos[loja] = pd.to_numeric(df_pedidos[loja], errors='coerce').fillna(0).astype(int)
         else:
             df_pedidos[loja] = 0
+            
+        # Garante que a coluna de OBS existe
+        obs_col = f"{loja}_OBS"
+        if obs_col in df_pedidos.columns:
+            df_pedidos[obs_col] = df_pedidos[obs_col].fillna("").astype(str)
+        else:
+            df_pedidos[obs_col] = ""
 
     return df_pedidos
 
@@ -639,6 +678,9 @@ def modal_zerar_pedidos():
             for loja in LOJAS:
                 if loja in df_main.columns:
                     df_main[loja] = 0
+                obs_col = f"{loja}_OBS"
+                if obs_col in df_main.columns:
+                    df_main[obs_col] = ""
             salvar_pedidos(df_main)
             
             # Zera Observações
@@ -719,6 +761,7 @@ if perfil_navegacao == "Separação e Fechamento":
 
         with col_salvar:
             if st.button("💾 Salvar Alterações", type="primary", use_container_width=True):
+                # Recarrega a base pra garantir que as OBS não se percam, atualiza só as quantidades alteradas
                 df_to_save = carregar_pedidos()
                 for _, row_edit in df_editado.iterrows():
                     mask = (df_to_save["Fornecedor"] == row_edit["Fornecedor"]) & (df_to_save["Código"] == row_edit["Código"])
@@ -916,6 +959,7 @@ elif perfil_navegacao == "Visão das Lojas":
 </div>""", unsafe_allow_html=True)
 
         itens_com_pedido = int((df_editado["Qtde"] > 0).sum())
+        # Mostra o total de itens originais para não confundir quando tiver busca ativa
         total_itens      = len(df_loja_view) 
         total_unidades   = int(df_editado["Qtde"].sum())
         pct              = round(itens_com_pedido / total_itens * 100) if total_itens else 0
