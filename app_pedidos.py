@@ -160,17 +160,20 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
 .topbar-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 .erp-badge { background-color: #2ea043; color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 600; margin-left: 8px;}
 
-/* IMPRESSÃO (AJUSTADO PARA ELIMINAR O ESPAÇO BRANCO E MELHORAR LEITURA) */
+/* IMPRESSÃO (CORRIGIDO PARA MODO PAISAGEM SEM !IMPORTANT) */
 @media print {
-    @page { size: A4 landscape; margin: 5mm; }
+    @page { size: landscape; margin: 5mm; }
 
     /* RESET AGRESSIVO DE MARGENS E PADDINGS DO STREAMLIT */
     html, body, .stApp, #root, [data-testid="stAppViewContainer"], [data-testid="stMainBlockContainer"], .main, .block-container {
         padding-top: 0 !important;
+        padding-bottom: 0 !important;
         margin-top: 0 !important;
         background-color: #ffffff !important;
         background-image: none !important;
         color: #000000 !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     header, [data-testid="stSidebar"], [data-testid="stHeader"] { display: none !important; }
@@ -800,7 +803,7 @@ if perfil_navegacao == "Separação e Fechamento":
                     "<script>"
                     "var s=document.createElement('style');"
                     "s.id='__sep_land__';"
-                    "s.innerHTML='@media print{@page{size:A4 landscape!important;margin:5mm!important;} html,body,.stApp,#root,[data-testid=\"stAppViewContainer\"],[data-testid=\"stMainBlockContainer\"],.main,.block-container{padding-top:0!important;margin-top:0!important;}}';"
+                    "s.innerHTML='@media print { @page { size: landscape; margin: 5mm; } html,body,.stApp,#root,[data-testid=\"stAppViewContainer\"],[data-testid=\"stMainBlockContainer\"],.main,.block-container { padding: 0 !important; margin: 0 !important; } }';"
                     "window.parent.document.head.appendChild(s);"
                     "window.parent.print();"
                     "setTimeout(function(){"
@@ -873,7 +876,7 @@ elif perfil_navegacao == "Visão das Lojas":
     # Renomeando a coluna de quantidade
     df_loja_view = df_loja_view.rename(columns={loja_selecionada: "Qtde"})
 
-    # Puxar Estoque do Banco (Com Ajuste para Estoque6 conforme Solicitado)
+    # Puxar Estoque do Banco com a soma de estoque1 + estoque6
     try:
         conn_pg = st.connection("banco_erp", type="sql")
         mapa_banco_erp = {
@@ -887,7 +890,7 @@ elif perfil_navegacao == "Visão das Lojas":
             SELECT cadprodemp.cade_codempresa,
                    cadprodemp.cade_codigo,
                    cadprod.cadp_descricao,
-                   cadprodemp.cade_estoque6::numeric(18,2) AS estoque6
+                   (COALESCE(cadprodemp.cade_estoque1::numeric(18,2), 0) + COALESCE(cadprodemp.cade_estoque6::numeric(18,2), 0)) AS estoque
             FROM cadprodemp
             JOIN cadprod ON cadprodemp.cade_codigo = cadprod.cadp_codigo
             WHERE cadprodemp.cade_ativo::text = 'S'::text 
@@ -897,7 +900,7 @@ elif perfil_navegacao == "Visão das Lojas":
         df_erp = conn_pg.query(query_erp, ttl=300)
 
         if not df_erp.empty:
-            df_erp = df_erp.rename(columns={"cade_codigo": "Código", "estoque6": "Estoque"})
+            df_erp = df_erp.rename(columns={"cade_codigo": "Código", "estoque": "Estoque"})
             df_loja_view = pd.merge(df_loja_view, df_erp[["Código", "Estoque"]], on="Código", how="left")
         else:
             df_loja_view["Estoque"] = 0
@@ -990,7 +993,7 @@ elif perfil_navegacao == "Visão das Lojas":
                     "<script>"
                     "var s=document.createElement('style');"
                     "s.id='__loja_print__';"
-                    "s.innerHTML='@media print{@page{size:A4 landscape!important;margin:5mm!important;} html,body,.stApp,#root,[data-testid=\"stAppViewContainer\"],[data-testid=\"stMainBlockContainer\"],.main,.block-container{padding-top:0!important;margin-top:0!important;}}';"
+                    "s.innerHTML='@media print { @page { size: landscape; margin: 5mm; } html,body,.stApp,#root,[data-testid=\"stAppViewContainer\"],[data-testid=\"stMainBlockContainer\"],.main,.block-container { padding: 0 !important; margin: 0 !important; } }';"
                     "window.parent.document.head.appendChild(s);"
                     "window.parent.print();"
                     "setTimeout(function(){var e=window.parent.document.getElementById('__loja_print__');if(e)e.remove();},3000);"
@@ -1167,7 +1170,7 @@ elif perfil_navegacao == "Visão por Fornecedor (Resumo)":
                 "<script>"
                 "var s=document.createElement('style');"
                 "s.id='__forn_port__';"
-                "s.innerHTML='@media print{@page{size:A4 landscape!important;margin:5mm!important;} html,body,.stApp,#root,[data-testid=\"stAppViewContainer\"],[data-testid=\"stMainBlockContainer\"],.main,.block-container{padding-top:0!important;margin-top:0!important;}}';"
+                "s.innerHTML='@media print { @page { size: landscape; margin: 5mm; } html,body,.stApp,#root,[data-testid=\"stAppViewContainer\"],[data-testid=\"stMainBlockContainer\"],.main,.block-container { padding: 0 !important; margin: 0 !important; } }';"
                 "window.parent.document.head.appendChild(s);"
                 "window.parent.print();"
                 "setTimeout(function(){"
