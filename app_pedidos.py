@@ -160,11 +160,10 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
 .topbar-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 .erp-badge { background-color: #2ea043; color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 600; margin-left: 8px;}
 
-/* IMPRESSÃO (CORRIGIDO PARA MODO PAISAGEM SEM !IMPORTANT) */
+/* IMPRESSÃO */
 @media print {
     @page { size: landscape; margin: 5mm; }
 
-    /* RESET AGRESSIVO DE MARGENS E PADDINGS DO STREAMLIT */
     html, body, .stApp, #root, [data-testid="stAppViewContainer"], [data-testid="stMainBlockContainer"], .main, .block-container {
         padding-top: 0 !important;
         padding-bottom: 0 !important;
@@ -177,93 +176,47 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
     }
 
     header, [data-testid="stSidebar"], [data-testid="stHeader"] { display: none !important; }
-    
     [data-testid="stElementContainer"],
     [data-testid="stHorizontalBlock"],
     div[data-testid="stVerticalBlockBorderWrapper"] { display: none !important; }
     
-    [data-testid="stElementContainer"]:has(#print-section) {
-        display: block !important; width: 100% !important; padding: 0 !important; margin: 0 !important;
-    }
+    [data-testid="stElementContainer"]:has(#print-section) { display: block !important; width: 100% !important; padding: 0 !important; margin: 0 !important; }
     
     #print-section { display: block !important; width: 100% !important; margin-top: 0 !important; padding-top: 0 !important; }
-    #print-section h2 {
-        font-size: 14px !important;
-        margin: 0 0 6px 0 !important;
-        padding-bottom: 3px !important;
-        border-bottom: 2px solid #000 !important;
-        color: #000 !important;
-        display: block !important;
-        text-align: center !important;
-    }
-    #print-section h3 {
-        font-size: 11px !important;
-        font-weight: 700 !important;
-        border-bottom: none !important;
-        margin-top: 10px !important;
-        margin-bottom: 3px !important;
-        color: #000 !important;
-    }
+    #print-section h2 { font-size: 14px !important; margin: 0 0 6px 0 !important; padding-bottom: 3px !important; border-bottom: 2px solid #000 !important; color: #000 !important; display: block !important; text-align: center !important; }
+    #print-section h3 { font-size: 11px !important; font-weight: 700 !important; border-bottom: none !important; margin-top: 10px !important; margin-bottom: 3px !important; color: #000 !important; }
     .print-container { width: 100% !important; display: block !important; }
 
-    table.print-table {
-        width: 100% !important;
-        border-collapse: collapse !important;
-        color: #000000 !important;
-        font-family: 'IBM Plex Sans', sans-serif !important;
-        line-height: 1.2 !important;
-        display: table !important;
-        table-layout: fixed !important;
-        margin-bottom: 5px !important;
-    }
-    table.print-table th, table.print-table td {
-        border: 1px solid #444 !important;
-        padding: 3px !important;
-        color: #000000 !important;
-        background-color: #ffffff !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-    }
+    table.print-table { width: 100% !important; border-collapse: collapse !important; color: #000000 !important; font-family: 'IBM Plex Sans', sans-serif !important; line-height: 1.2 !important; display: table !important; table-layout: fixed !important; margin-bottom: 5px !important; }
+    table.print-table th, table.print-table td { border: 1px solid #444 !important; padding: 3px !important; color: #000000 !important; background-color: #ffffff !important; overflow: hidden !important; text-overflow: ellipsis !important; }
     table.print-table td { white-space: nowrap !important; }
-    table.print-table th {
-        background-color: #d5d5d5 !important;
-        font-weight: bold !important;
-        text-align: center !important;
-        white-space: normal !important;
-        word-break: break-word !important;
-        vertical-align: middle !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-    }
+    table.print-table th { background-color: #d5d5d5 !important; font-weight: bold !important; text-align: center !important; white-space: normal !important; word-break: break-word !important; vertical-align: middle !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     table.print-table tr { break-inside: avoid !important; page-break-inside: avoid !important; }
 
     /* LOJAS */
     table.print-loja { font-size: 10px !important; }
     table.print-loja th:nth-child(1), table.print-loja td:nth-child(1) { width: 15% !important; text-align: left !important; }
-    table.print-loja th:nth-child(2), table.print-loja td:nth-child(2) { width: 8% !important; text-align: center !important; }
-    table.print-loja th:nth-child(3), table.print-loja td:nth-child(3) { width: 35% !important; text-align: left !important; }
+    table.print-loja th:nth-child(2), table.print-loja td:nth-child(2) { width: 10% !important; text-align: center !important; }
+    table.print-loja th:nth-child(3), table.print-loja td:nth-child(3) { width: 50% !important; text-align: left !important; }
     table.print-loja th:nth-child(4), table.print-loja td:nth-child(4) { width: 10% !important; text-align: center !important; }
-    table.print-loja th:nth-child(5), table.print-loja td:nth-child(5) { width: 12% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    table.print-loja th:nth-child(6), table.print-loja td:nth-child(6) { width: 20% !important; text-align: left !important; }
+    table.print-loja th:nth-child(5), table.print-loja td:nth-child(5) { width: 15% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
-    /* FORNECEDOR / MATRICIAL (AJUSTE DE FONTE MAIOR) */
+    /* FORNECEDOR / MATRICIAL */
     table.print-forn { font-size: 9.5px !important; } 
-    table.print-forn th:nth-child(1), table.print-forn td:nth-child(1) { width: 5% !important; text-align: center !important; }
-    table.print-forn th:nth-child(2), table.print-forn td:nth-child(2) { width: 23% !important; text-align: left !important; }
+    table.print-forn th:nth-child(1), table.print-forn td:nth-child(1) { width: 8% !important; text-align: center !important; }
+    table.print-forn th:nth-child(2), table.print-forn td:nth-child(2) { width: 36% !important; text-align: left !important; }
     table.print-forn th:nth-child(n+3):nth-child(-n+10),
-    table.print-forn td:nth-child(n+3):nth-child(-n+10) { width: 5.5% !important; text-align: center !important; }
-    table.print-forn th:nth-child(11), table.print-forn td:nth-child(11) { width: 6% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    table.print-forn th:nth-child(12), table.print-forn td:nth-child(12) { width: 22% !important; text-align: left !important; font-style: italic !important; }
+    table.print-forn td:nth-child(n+3):nth-child(-n+10) { width: 6% !important; text-align: center !important; }
+    table.print-forn th:nth-child(11), table.print-forn td:nth-child(11) { width: 8% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
     /* SEPARAÇÃO */
     table.print-sep { font-size: 8.5px !important; }
-    table.print-sep th:nth-child(1), table.print-sep td:nth-child(1) { width: 10% !important; text-align: left !important; }
+    table.print-sep th:nth-child(1), table.print-sep td:nth-child(1) { width: 14% !important; text-align: left !important; }
     table.print-sep th:nth-child(2), table.print-sep td:nth-child(2) { width: 6%  !important; text-align: center !important; }
-    table.print-sep th:nth-child(3), table.print-sep td:nth-child(3) { width: 20% !important; text-align: left !important; }
+    table.print-sep th:nth-child(3), table.print-sep td:nth-child(3) { width: 24% !important; text-align: left !important; }
     table.print-sep th:nth-child(n+4):nth-child(-n+11),
-    table.print-sep td:nth-child(n+4):nth-child(-n+11) { width: 4.5% !important; text-align: center !important; }
-    table.print-sep th:nth-child(12), table.print-sep td:nth-child(12) { width: 6% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    table.print-sep th:nth-child(13), table.print-sep td:nth-child(13) { width: 22% !important; text-align: left !important; font-style: italic !important; }
+    table.print-sep td:nth-child(n+4):nth-child(-n+11) { width: 6% !important; text-align: center !important; }
+    table.print-sep th:nth-child(12), table.print-sep td:nth-child(12) { width: 8% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 }
 
 @media screen {
@@ -350,11 +303,7 @@ def gerar_excel_estilizado(df, sheet_name="Resumo", df_obs=None):
                 except:
                     pass
             
-            # Limita e ajusta largura especial para coluna de Observações
-            if "OBS" in header_val:
-                worksheet.column_dimensions[col_letter].width = min(max_length + 2, 60)
-            else:
-                worksheet.column_dimensions[col_letter].width = max_length + 2
+            worksheet.column_dimensions[col_letter].width = max_length + 2
 
         # Inserir Observações no Final da Planilha se houver
         if df_obs is not None and not df_obs.empty:
@@ -404,16 +353,6 @@ def parse_bool(x):
     if isinstance(x, (int, float)): return bool(x) and not pd.isna(x)
     return str(x).strip().upper() in ['TRUE', 'VERDADEIRO', '1', 'V', 'SIM', 'YES', 'T', 'X']
 
-# Função para concatenar observações na visão matricial
-def concat_obs(row):
-    obs_list = []
-    for l in LOJAS:
-        val = str(row.get(f"{l}_OBS", "")).strip()
-        if val and val.lower() != "nan":
-            sigla = l.replace("Loja ", "L")
-            obs_list.append(f"{sigla}: {val}")
-    return " | ".join(obs_list)
-
 @st.cache_data(ttl=15)
 def carregar_obs():
     try:
@@ -431,7 +370,6 @@ def carregar_obs():
     if "Observacao" not in df_obs.columns:
         df_obs["Observacao"] = ""
         
-    # FORÇA TUDO PARA TEXTO E TRATA OS NANS PARA EVITAR ERROS DE ACESSO .STR
     df_obs["Observacao"] = df_obs["Observacao"].fillna("").astype(str)
 
     for loja in LOJAS:
@@ -525,7 +463,6 @@ def carregar_pedidos():
         df_init = df_cat[["Fornecedor", "Código", "Descrição"]].copy()
         for loja in LOJAS:
             df_init[loja] = 0
-            df_init[f"{loja}_OBS"] = ""
         if not df_init.empty:
             conn.update(worksheet=WS_PEDIDOS, data=df_init)
         return df_init
@@ -537,18 +474,10 @@ def carregar_pedidos():
         df_pedidos["Código"] = pd.to_numeric(df_pedidos["Código"], errors='coerce').fillna(0).astype(int)
 
     for loja in LOJAS:
-        # Garante que a coluna de quantidade existe
         if loja in df_pedidos.columns:
             df_pedidos[loja] = pd.to_numeric(df_pedidos[loja], errors='coerce').fillna(0).astype(int)
         else:
             df_pedidos[loja] = 0
-            
-        # Garante que a coluna de OBS existe
-        obs_col = f"{loja}_OBS"
-        if obs_col in df_pedidos.columns:
-            df_pedidos[obs_col] = df_pedidos[obs_col].fillna("").astype(str)
-        else:
-            df_pedidos[obs_col] = ""
 
     return df_pedidos
 
@@ -686,12 +615,8 @@ def modal_zerar_pedidos():
             for loja in LOJAS:
                 if loja in df_main.columns:
                     df_main[loja] = 0
-                obs_col = f"{loja}_OBS"
-                if obs_col in df_main.columns:
-                    df_main[obs_col] = ""
             salvar_pedidos(df_main)
             
-            # Zera Observações
             df_obs = carregar_obs()
             df_obs["Observacao"] = ""
             salvar_obs(df_obs)
@@ -720,9 +645,8 @@ if perfil_navegacao == "Separação e Fechamento":
             st.stop()
 
         df_base["TOTAL GERAL"] = df_base[LOJAS].sum(axis=1)
-        df_base["OBS GERAL"] = df_base.apply(concat_obs, axis=1)
 
-        cols_order = ["Fornecedor", "Código", "Descrição"] + LOJAS + ["TOTAL GERAL", "OBS GERAL"]
+        cols_order = ["Fornecedor", "Código", "Descrição"] + LOJAS + ["TOTAL GERAL"]
         df_exibir = df_base[cols_order]
 
         # --- BUSCA NA TELA DE SEPARAÇÃO ---
@@ -742,7 +666,6 @@ if perfil_navegacao == "Separação e Fechamento":
             "Código":      st.column_config.NumberColumn("Cód.", width=80, format="%d", disabled=True),
             "Descrição":   st.column_config.TextColumn("Produto", disabled=True),
             "TOTAL GERAL": st.column_config.NumberColumn("TOTAL ▶️", width=80, format="%d", disabled=True),
-            "OBS GERAL":   st.column_config.TextColumn("OBS GERAL", width=250, disabled=True),
         }
         for loja, novo_nome in MAPA_LOJAS.items():
             col_cfg[loja] = st.column_config.NumberColumn(novo_nome, format="%d", min_value=0, step=1)
@@ -771,7 +694,6 @@ if perfil_navegacao == "Separação e Fechamento":
 
         with col_salvar:
             if st.button("💾 Salvar Alterações", type="primary", use_container_width=True):
-                # Recarrega a base pra garantir que as OBS não se percam, atualiza só as quantidades alteradas
                 df_to_save = carregar_pedidos()
                 for _, row_edit in df_editado.iterrows():
                     mask = (df_to_save["Fornecedor"] == row_edit["Fornecedor"]) & (df_to_save["Código"] == row_edit["Código"])
@@ -973,7 +895,6 @@ elif perfil_navegacao == "Visão das Lojas":
 </div>""", unsafe_allow_html=True)
 
         itens_com_pedido = int((df_editado["Qtde"] > 0).sum())
-        # Mostra o total de itens originais para não confundir quando tiver busca ativa
         total_itens      = len(df_loja_view) 
         total_unidades   = int(df_editado["Qtde"].sum())
         pct              = round(itens_com_pedido / total_itens * 100) if total_itens else 0
