@@ -160,9 +160,9 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
 .topbar-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 .erp-badge { background-color: #2ea043; color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 600; margin-left: 8px;}
 
-/* IMPRESSÃO */
+/* IMPRESSÃO (AJUSTADO PARA ELIMINAR O ESPAÇO BRANCO E MELHORAR LEITURA) */
 @media print {
-    @page { size: A4 landscape; margin: 6mm 6mm; }
+    @page { size: A4 landscape; margin: 5mm; }
 
     .stApp, .main, body, html {
         background-color: #ffffff !important;
@@ -171,16 +171,28 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
         padding: 0 !important;
         margin: 0 !important;
     }
+    
+    /* Remove os espaços gigantes no topo do Streamlit */
+    div[class^="block-container"], .block-container {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+        max-width: 100% !important;
+    }
+
     header, [data-testid="stSidebar"], [data-testid="stHeader"] { display: none !important; }
+    
     [data-testid="stElementContainer"],
     [data-testid="stHorizontalBlock"],
     div[data-testid="stVerticalBlockBorderWrapper"] { display: none !important; }
+    
     [data-testid="stElementContainer"]:has(#print-section) {
-        display: block !important; width: 100% !important;
+        display: block !important; width: 100% !important; padding: 0 !important; margin: 0 !important;
     }
-    #print-section { display: block !important; width: 100% !important; }
+    
+    #print-section { display: block !important; width: 100% !important; margin-top: 0 !important; padding-top: 0 !important; }
     #print-section h2 {
-        font-size: 13px !important;
+        font-size: 14px !important;
         margin: 0 0 6px 0 !important;
         padding-bottom: 3px !important;
         border-bottom: 2px solid #000 !important;
@@ -189,10 +201,10 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
         text-align: center !important;
     }
     #print-section h3 {
-        font-size: 10px !important;
+        font-size: 11px !important;
         font-weight: 700 !important;
         border-bottom: none !important;
-        margin-top: 12px !important;
+        margin-top: 10px !important;
         margin-bottom: 3px !important;
         color: #000 !important;
     }
@@ -206,11 +218,11 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
         line-height: 1.2 !important;
         display: table !important;
         table-layout: fixed !important;
-        margin-bottom: 4px !important;
+        margin-bottom: 5px !important;
     }
     table.print-table th, table.print-table td {
         border: 1px solid #444 !important;
-        padding: 2px 3px !important;
+        padding: 3px !important;
         color: #000000 !important;
         background-color: #ffffff !important;
         overflow: hidden !important;
@@ -229,7 +241,7 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
     }
     table.print-table tr { break-inside: avoid !important; page-break-inside: avoid !important; }
 
-    /* LOJAS: Ajustado para incluir OBS */
+    /* LOJAS */
     table.print-loja { font-size: 10px !important; }
     table.print-loja th:nth-child(1), table.print-loja td:nth-child(1) { width: 15% !important; text-align: left !important; }
     table.print-loja th:nth-child(2), table.print-loja td:nth-child(2) { width: 8% !important; text-align: center !important; }
@@ -238,17 +250,17 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
     table.print-loja th:nth-child(5), table.print-loja td:nth-child(5) { width: 12% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     table.print-loja th:nth-child(6), table.print-loja td:nth-child(6) { width: 20% !important; text-align: left !important; }
 
-    /* FORNECEDOR / MATRICIAL: Ajustado para incluir OBS GERAL */
-    table.print-forn { font-size: 7.5px !important; }
-    table.print-forn th:nth-child(1), table.print-forn td:nth-child(1) { width: 6% !important; text-align: center !important; }
-    table.print-forn th:nth-child(2), table.print-forn td:nth-child(2) { width: 22% !important; text-align: left !important; }
+    /* FORNECEDOR / MATRICIAL (AJUSTE DE FONTE MAIOR) */
+    table.print-forn { font-size: 9.5px !important; } /* Aumentado para melhor leitura */
+    table.print-forn th:nth-child(1), table.print-forn td:nth-child(1) { width: 5% !important; text-align: center !important; }
+    table.print-forn th:nth-child(2), table.print-forn td:nth-child(2) { width: 23% !important; text-align: left !important; }
     table.print-forn th:nth-child(n+3):nth-child(-n+10),
-    table.print-forn td:nth-child(n+3):nth-child(-n+10) { width: 5% !important; text-align: center !important; }
+    table.print-forn td:nth-child(n+3):nth-child(-n+10) { width: 5.5% !important; text-align: center !important; }
     table.print-forn th:nth-child(11), table.print-forn td:nth-child(11) { width: 6% !important; text-align: center !important; font-weight: bold !important; background-color: #eeeeee !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    table.print-forn th:nth-child(12), table.print-forn td:nth-child(12) { width: 26% !important; text-align: left !important; font-style: italic !important; }
+    table.print-forn th:nth-child(12), table.print-forn td:nth-child(12) { width: 22% !important; text-align: left !important; font-style: italic !important; }
 
-    /* SEPARAÇÃO: Ajustado para incluir OBS GERAL */
-    table.print-sep { font-size: 8px !important; }
+    /* SEPARAÇÃO */
+    table.print-sep { font-size: 8.5px !important; }
     table.print-sep th:nth-child(1), table.print-sep td:nth-child(1) { width: 10% !important; text-align: left !important; }
     table.print-sep th:nth-child(2), table.print-sep td:nth-child(2) { width: 6%  !important; text-align: center !important; }
     table.print-sep th:nth-child(3), table.print-sep td:nth-child(3) { width: 20% !important; text-align: left !important; }
@@ -712,8 +724,9 @@ if perfil_navegacao == "Separação e Fechamento":
             st.stop()
 
         df_base["TOTAL GERAL"] = df_base[LOJAS].sum(axis=1)
+        df_base["OBS GERAL"] = df_base.apply(concat_obs, axis=1)
 
-        cols_order = ["Fornecedor", "Código", "Descrição"] + LOJAS + ["TOTAL GERAL"]
+        cols_order = ["Fornecedor", "Código", "Descrição"] + LOJAS + ["TOTAL GERAL", "OBS GERAL"]
         df_exibir = df_base[cols_order]
 
         # --- BUSCA NA TELA DE SEPARAÇÃO ---
@@ -733,6 +746,7 @@ if perfil_navegacao == "Separação e Fechamento":
             "Código":      st.column_config.NumberColumn("Cód.", width=80, format="%d", disabled=True),
             "Descrição":   st.column_config.TextColumn("Produto", disabled=True),
             "TOTAL GERAL": st.column_config.NumberColumn("TOTAL ▶️", width=80, format="%d", disabled=True),
+            "OBS GERAL":   st.column_config.TextColumn("OBS GERAL", width=250, disabled=True),
         }
         for loja, novo_nome in MAPA_LOJAS.items():
             col_cfg[loja] = st.column_config.NumberColumn(novo_nome, format="%d", min_value=0, step=1)
@@ -793,7 +807,7 @@ if perfil_navegacao == "Separação e Fechamento":
                     "<script>"
                     "var s=document.createElement('style');"
                     "s.id='__sep_land__';"
-                    "s.innerHTML='@media print{@page{size:A4 landscape!important;margin:6mm 10mm!important;}}';"
+                    "s.innerHTML='@media print{@page{size:A4 landscape!important;margin:5mm 5mm!important;} div[class^=\"block-container\"]{padding-top:0!important;}}';"
                     "window.parent.document.head.appendChild(s);"
                     "window.parent.print();"
                     "setTimeout(function(){"
@@ -1146,7 +1160,7 @@ elif perfil_navegacao == "Visão por Fornecedor (Resumo)":
                 "<script>"
                 "var s=document.createElement('style');"
                 "s.id='__forn_port__';"
-                "s.innerHTML='@media print{@page{size:A4 landscape!important;margin:6mm 6mm!important;}}';"
+                "s.innerHTML='@media print{@page{size:A4 landscape!important;margin:5mm 5mm!important;} div[class^=\"block-container\"]{padding-top:0!important;}}';"
                 "window.parent.document.head.appendChild(s);"
                 "window.parent.print();"
                 "setTimeout(function(){"
