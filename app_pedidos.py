@@ -1186,6 +1186,10 @@ elif perfil_navegacao == "Catálogo de Produtos":
     df_catalogo = carregar_catalogo_embalagem()
     df_editor_input = df_catalogo.drop(columns=["Descrição"], errors="ignore")
 
+    # 🧹 Limpando espaços invisíveis para evitar que a categoria suma da tela
+    if "Fornecedor" in df_editor_input.columns:
+        df_editor_input["Fornecedor"] = df_editor_input["Fornecedor"].astype(str).str.strip()
+
     for loja in LOJAS:
         if loja in df_editor_input.columns:
             df_editor_input[loja] = df_editor_input[loja].fillna(False).astype(bool)
@@ -1212,16 +1216,15 @@ elif perfil_navegacao == "Catálogo de Produtos":
 
     with st.container(border=True):
 
-        opcoes_forn = [
-            "Pet Cristal",
-            "Embalagens Isopor",
-            "Objeto P/ Produção",
-            "Cartaz",
-            "Dona Rita",
-            "Diversos",
-            "Sacos Plásticos",
-            "Bobinas"
+        # 🔥 Opções Dinâmicas: Pega o que está no banco e junta com o padrão
+        categorias_banco = df_editor_input["Fornecedor"].unique().tolist()
+        categorias_padrao = [
+            "Pet Cristal", "Embalagens Isopor", "Objeto P/ Produção",
+            "Cartaz", "Dona Rita", "Diversos", "Sacos Plásticos", "Bobinas"
         ]
+        
+        # Remove duplicatas e espaços em branco vazios, depois organiza em ordem alfabética
+        opcoes_forn = sorted(list(set([c for c in (categorias_banco + categorias_padrao) if c.strip() != ""])))
 
         col_cfg_cat = {
             "Fornecedor":         st.column_config.SelectboxColumn("Categoria", options=opcoes_forn, width=200, required=True),
